@@ -1,26 +1,21 @@
-  {
-    "manifest_version": 3,
-    "name": "LeetCode Code Extractor",
-    "version": "1.0",
-    "permissions": [
-      "storage",
-      "activeTab",
-      "scripting"
-    ],
-    "host_permissions": [
-      "https://leetcode.com/*"
-    ],
-    "background": {
-      "service_worker": "background.js"
-    },
-    "content_scripts": [
-      {
-        "matches": ["https://leetcode.com/*"],
-        "js": ["content.js"]
-      }
-    ],
-    "action": {
-      "default_popup": "popup.html"
+{
+  "manifest_version": 3,
+  "name": "Leetcode",
+  "version": "1.0",
+  "description": "Automated pipeline to push code from LeetCode to GitHub",
+  "permissions": ["activeTab", "storage", "scripting"],
+  "host_permissions": ["*://leetcode.com/problems/*/submissions/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.leetcode.com/problems/*/submissions/*"],
+      "js": ["content.js"]
     }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon.png"
   }
-  
+}
