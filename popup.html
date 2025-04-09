@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leetcode Extension</title>
     <link rel="stylesheet" href="popup.css">
 </head>
+
 <body>
     <h2>Recent Submission</h2>
-    <div id="submission-container"></div>
+    <div id="submission-container">
+        <h2 id="submission-title">Last Submission</h2>
+        <p id="submission-language"></p>
+        <p id="submission-timestamp"></p>
+        <p id="submission-url"></p>
+        <pre id="submission-code"></pre> <!-- Code block -->
+    </div>
+    <input type="text" id="repo-name" placeholder="GitHub Repo (e.g., username/repo)">
+    <input type="text" id="branch-name" placeholder="Branch (e.g., main)">
+    <input type="password" id="github-token" placeholder="GitHub Personal Access Token">
+    <button id="upload-github">Upload to GitHub</button>
     <script src="popup.js"></script>
 </body>
+
 </html>
