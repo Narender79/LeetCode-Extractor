@@ -3,15 +3,15 @@ console.log("✅ content.js is running!");
 // Function to extract submission data
 function extractSubmission() {
     console.log("✅ Running extractSubmission...");
-
+    // This setTimeout making sure that it will run only one time
     setTimeout(() => {
         try {
             // Check if submission is "Accepted"
             let statusElement = document.querySelector("span[data-e2e-locator='submission-result']");
             let status = statusElement ? statusElement.innerText.trim() : "Unknown";
 
-            console.log("Status element ->", statusElement);
-            console.log("Status ->", status);
+            // console.log("Status element ->", statusElement);
+            // console.log("Status ->", status);
 
             if (status !== "Accepted") {
                 console.log("🚨 Submission was not accepted. Ignoring this submission.");
@@ -26,8 +26,8 @@ function extractSubmission() {
             let codeElement = document.querySelector("div.group.relative pre code");
             let code = codeElement ? codeElement.innerText.trim() : "Code not found";
 
-            console.log("Code element ->", codeElement);
-            console.log("Code ->", code);
+            // console.log("Code element ->", codeElement);
+            // console.log("Code ->", code);
 
             // Extract Language
             let language = codeElement ? (codeElement.className.replace("language-", "").trim() || "Unknown") : "Unknown";
@@ -46,7 +46,12 @@ function extractSubmission() {
 
             // ✅ Log extracted data
             console.log("✅ Extracted Submission Data:", submissionData);
-          
+            
+            //Saving the data in the local storage
+            chrome.storage.local.set({ submissions: submissionData }, function () {
+                console.log("✅ Submission data stored.");
+            });
+                   
 
         } catch (error) {
             console.error("🚨 ERROR in extractSubmission:", error);
